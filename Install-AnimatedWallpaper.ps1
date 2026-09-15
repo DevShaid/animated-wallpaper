@@ -185,6 +185,30 @@ $shortcut.Save()
 
 Write-InstallLog 'Starting animated desktop wallpaper...'
 Start-Process -FilePath $installedExe -ArgumentList @('/desktop', $installedVideo) -WindowStyle Hidden
+# TranslucentTB reads its configuration from %LOCALAPPDATA%\TranslucentTB\settings.json.
+# The settings.json beside the executable is NOT read at runtime. If the LocalAppData copy is
+# missing, TranslucentTB silently falls back to its built-in default accent ('blur'), which
+# renders as a flat tinted bar rather than a transparent one.
+$taskbarConfigDir = Join-Path $env:LOCALAPPDATA 'TranslucentTB'
+$taskbarConfig = Join-Path $taskbarConfigDir 'settings.json'
+$sourceTaskbarConfig = Join-Path $solutionDir 'translucenttb-settings.json'
+if (-not (Test-Path -LiteralPath $sourceTaskbarConfig -PathType Leaf)) {
+    $sourceTaskbarConfig = Join-Path $sourceTaskbarDir 'settings.json'
+}
+if (Test-Path -LiteralPath $sourceTaskbarConfig -PathType Leaf) {
+    Write-InstallLog 'Deploying TranslucentTB configuration to %LOCALAPPDATA%\TranslucentTB...'
+    New-Item -ItemType Directory -Force -Path $taskbarConfigDir | Out-Null
+    if (Test-Path -LiteralPath $taskbarConfig -PathType Leaf) {
+        # Keep any existing configuration; TranslucentTB writes its own defaults here on first run,
+        # so an existing file is just as likely to be the 'blur' default as a deliberate edit.
+        Copy-Item -LiteralPath $taskbarConfig -Destination "$taskbarConfig.bak" -Force
+        Write-InstallLog "Backed up the previous taskbar configuration to $taskbarConfig.bak"
+    }
+    Copy-Item -LiteralPath $sourceTaskbarConfig -Destination $taskbarConfig -Force
+} else {
+    Write-Warning 'No TranslucentTB configuration found; the taskbar may render as a tinted bar.'
+}
+
 Write-InstallLog 'Applying fully transparent taskbar and system tray...'
 Start-Process -FilePath $taskbarExe -WorkingDirectory $taskbarDir -WindowStyle Hidden
 Start-Sleep -Seconds 6
