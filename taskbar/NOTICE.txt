@@ -1,0 +1,20 @@
+TranslucentTB 2026.2 portable x64
+
+Project: https://github.com/TranslucentTB/TranslucentTB
+Release: https://github.com/TranslucentTB/TranslucentTB/releases/tag/2026.2
+Source:  https://github.com/TranslucentTB/TranslucentTB/tree/2026.2
+License: GPL-3.0
+License text: https://github.com/TranslucentTB/TranslucentTB/blob/2026.2/LICENSE.md
+
+Binary verification (files as redistributed here):
+TranslucentTB.exe
+SHA-256: f933f5bf70405e13feadbcc53883f2676b5a8a1dae214b52c0fe0971c583a0ff
+FileVersion: 2026.2.0.d4636e4
+
+The executable is publisher-signed by Charles Milette
+(CN=Charles Milette, O=Charles Milette, L=Greenfield Park, S=Quebec, C=CA).
+
+Windows 11 note: transparency on Windows 11 is applied through ExplorerTAP.dll,
+which TranslucentTB stages into %LOCALAPPDATA%\Temp\TranslucentTB and injects
+into explorer.exe. The legacy SetWindowCompositionAttribute accent API does NOT
+work on Windows 11 taskbars and produces a solid white bar instead.

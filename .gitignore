@@ -1,0 +1,4 @@
+# Runtime logs and local state (generated at install/run time)
+*.log
+*.bak
+lock-screen-capture-*.png

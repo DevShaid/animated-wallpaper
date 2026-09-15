@@ -1,0 +1,89 @@
+﻿{
+    "$schema":  "https://TranslucentTB.github.io/settings.schema.json",
+    "desktop_appearance":  {
+                               "accent":  "clear",
+                               "color":  "#00000000",
+                               "show_peek":  false,
+                               "show_line":  false
+                           },
+    "visible_window_appearance":  {
+                                      "enabled":  false,
+                                      "accent":  "clear",
+                                      "color":  "#00000000",
+                                      "show_peek":  false,
+                                      "show_line":  false,
+                                      "rules":  {
+                                                    "window_class":  {
+
+                                                                     },
+                                                    "window_title":  {
+
+                                                                     },
+                                                    "process_name":  {
+
+                                                                     }
+                                                }
+                                  },
+    "maximized_window_appearance":  {
+                                        "enabled":  false,
+                                        "accent":  "clear",
+                                        "color":  "#00000000",
+                                        "show_peek":  false,
+                                        "show_line":  false,
+                                        "rules":  {
+                                                      "window_class":  {
+
+                                                                       },
+                                                      "window_title":  {
+
+                                                                       },
+                                                      "process_name":  {
+
+                                                                       }
+                                                  }
+                                    },
+    "start_opened_appearance":  {
+                                    "enabled":  false,
+                                    "accent":  "clear",
+                                    "color":  "#00000000",
+                                    "show_peek":  false,
+                                    "show_line":  false
+                                },
+    "search_opened_appearance":  {
+                                     "enabled":  false,
+                                     "accent":  "clear",
+                                     "color":  "#00000000",
+                                     "show_peek":  false,
+                                     "show_line":  false
+                                 },
+    "task_view_opened_appearance":  {
+                                        "enabled":  false,
+                                        "accent":  "clear",
+                                        "color":  "#00000000",
+                                        "show_peek":  false,
+                                        "show_line":  false
+                                    },
+    "battery_saver_appearance":  {
+                                     "enabled":  false,
+                                     "accent":  "clear",
+                                     "color":  "#00000000",
+                                     "show_peek":  false,
+                                     "show_line":  false
+                                 },
+    "ignored_windows":  {
+                            "window_class":  [
+
+                                             ],
+                            "window_title":  [
+
+                                             ],
+                            "process_name":  [
+
+                                             ]
+                        },
+    "hide_tray":  false,
+    "disable_saving":  false,
+    "verbosity":  "info",
+    "language":  "en-US",
+    "use_xaml_context_menu":  true
+}

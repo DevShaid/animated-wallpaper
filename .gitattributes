@@ -1,0 +1,15 @@
+* text=auto
+
+*.ps1  text eol=crlf
+*.cs   text eol=crlf
+*.json text eol=crlf
+*.txt  text eol=crlf
+*.md   text eol=lf
+
+*.exe  binary
+*.dll  binary
+*.pri  binary
+*.mp4  binary
+*.gif  binary
+*.png  binary
+*.jpeg binary
