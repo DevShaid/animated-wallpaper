@@ -129,6 +129,17 @@ which is what TranslucentTB does. Make sure nothing else is trying to style the 
 Check `%LOCALAPPDATA%\TranslucentTB\settings.json` exists and has `"accent": "clear"`, then
 restart TranslucentTB.
 
+**"Failed to initialize XAML Diagnostics. 0x800401E3: Operation unavailable"** — TranslucentTB dies
+at startup with a fatal error dialog. Same underlying cause as the restart prompt below: a Windows
+update has been applied but not completed, so `ExplorerTAP` cannot attach to explorer's XAML tree.
+Install pending updates and **Restart** (not Shut down — Fast Startup means shutdown does not fully
+reinitialize the kernel). This is the fix confirmed by multiple users in
+[TranslucentTB#1128](https://github.com/TranslucentTB/TranslucentTB/issues/1128).
+
+Do **not** use the UAC-disabling registry workaround circulating in
+[TranslucentTB#1109](https://github.com/TranslucentTB/TranslucentTB/issues/1109) — it permanently
+weakens system security to work around a transient state that a restart clears.
+
 **TranslucentTB says a restart is needed.** It's telling the truth. ExplorerTAP cannot inject into
 an `explorer.exe` whose taskbar binaries are mid-update. Verify with:
 
