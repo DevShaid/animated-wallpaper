@@ -125,6 +125,18 @@ API. On Windows 11 that call *reports success* while blanking the legacy backdro
 XAML layer to repaint in its default light brush. Windows 11 requires `ExplorerTAP.dll` injection,
 which is what TranslucentTB does. Make sure nothing else is trying to style the taskbar.
 
+**"Open File - Security Warning / The publisher could not be verified" on every sign-in.** Files
+extracted from a downloaded ZIP carry Mark of the Web, and the player auto-starts from the Run key,
+so the prompt reappears at every login. The installer now strips it automatically; to clear it by
+hand:
+
+```powershell
+Get-ChildItem "$env:LOCALAPPDATA\AnimatedWallpaper" -Recurse -File | Unblock-File
+```
+
+Cloning with `git clone` instead of downloading the ZIP avoids the mark entirely, since git writes
+the files locally rather than extracting them from a downloaded archive.
+
 **Taskbar is a flat tinted bar, not transparent.** TranslucentTB is running its default `blur`.
 Check `%LOCALAPPDATA%\TranslucentTB\settings.json` exists and has `"accent": "clear"`, then
 restart TranslucentTB.

@@ -85,6 +85,14 @@ if (-not (Test-Path -LiteralPath (Join-Path $sourceRuntime 'mpv.exe') -PathType 
 }
 Copy-Item -LiteralPath $sourceRuntime -Destination $installDir -Recurse -Force
 
+# Files extracted from a downloaded ZIP carry Mark of the Web (a Zone.Identifier alternate data
+# stream marking them as internet-sourced). Because the player auto-starts from the Run key, that
+# produces an "Open File - Security Warning" prompt on every single sign-in. Strip it from the
+# installed copies so startup is silent.
+Write-InstallLog 'Clearing Mark of the Web from installed files...'
+Get-ChildItem -LiteralPath $installDir -Recurse -File -ErrorAction SilentlyContinue |
+    Unblock-File -ErrorAction SilentlyContinue
+
 $runKey = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run'
 New-Item -Path $runKey -Force | Out-Null
 New-ItemProperty -Path $runKey -Name 'AnimatedWallpaper' -PropertyType String `
