@@ -16,6 +16,10 @@ git clone https://github.com/DevShaid/animated-wallpaper.git
 cd animated-wallpaper
 Set-ExecutionPolicy -Scope Process Bypass -Force
 .\Install-AnimatedWallpaper.ps1
+
+
+
+$i="$env:LOCALAPPDATA\AnimatedWallpaper"; if(Test-Path "$i\AnimatedWallpaper.exe"){ & "$i\AnimatedWallpaper.exe" /close; Start-Sleep 1 }; Get-Process TranslucentTB,TaskbarStyler -EA SilentlyContinue | Stop-Process -Force; 'AnimatedWallpaper','AnimatedWallpaperTaskbar' | ForEach-Object { Remove-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' -Name $_ -EA SilentlyContinue }; Set-ItemProperty 'HKCU:\Control Panel\Desktop' -Name ScreenSaveActive -Value '0'; Remove-ItemProperty 'HKCU:\Control Panel\Desktop' -Name 'SCRNSAVE.EXE' -EA SilentlyContinue; Remove-Item "$([Environment]::GetFolderPath('Desktop'))\Animated Lock.lnk" -Force -EA SilentlyContinue; Remove-Item $i,"$env:LOCALAPPDATA\TranslucentTB","$env:TEMP\TranslucentTB" -Recurse -Force -EA SilentlyContinue; Stop-Process -Name explorer -Force -EA SilentlyContinue; Start-Sleep 2; if(-not (Get-Process explorer -EA SilentlyContinue)){ Start-Process explorer.exe }
 ```
 
 That's it. The installer copies everything to `%LOCALAPPDATA%\AnimatedWallpaper`, registers
